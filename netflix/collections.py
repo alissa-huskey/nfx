@@ -10,14 +10,14 @@ import html
 from py.path import local
 from tabulate import tabulate
 
-from .page import Page
+from .query import Query, Page
 
 
 __all__ = ["Collection", "Expiring", "NewReleases"]
 
 
 class Collection:
-    """."""
+    """Collection class"""
     DATADIR = 'data'
     EXPIRE_DAYS = 1
     PER_PAGE = 100
@@ -90,6 +90,7 @@ class Collection:
             self.formatted,
             headers=[ f.capitalize() for f in self.output_fields.keys()])
         )
+        print("\nTotal:", len(self.filtered))
 
     def is_last(self, page) -> bool:
         """Return True if page is the last page"""
